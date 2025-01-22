@@ -1,0 +1,11 @@
+﻿  Main.cpp
+D:\MRK\Visual Studio\Projects\VulkanApp02_DataInjection\VulkanApp_Data6\Main.cpp(46,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\MRK\Visual Studio\Projects\VulkanApp02_DataInjection\VulkanApp_Data6\Main.cpp(50,17): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  VulkanMesh.cpp
+  VulkanRenderer.cpp
+  Generating Code...
+D:\MRK\Visual Studio\Projects\VulkanApp02_DataInjection\VulkanApp_Data6\VulkanUtilities.h(103,1): warning C4715: 'findMemoryTypeIndex': not all control paths return a value
+D:\MRK\Visual Studio\Projects\VulkanApp02_DataInjection\VulkanApp_Data6\VulkanMesh.cpp(129,1): warning C4715: 'VulkanMesh::findMemoryTypeIndex': not all control paths return a value
+D:\MRK\Visual Studio\Projects\VulkanApp02_DataInjection\VulkanApp_Data6\VulkanUtilities.h(103,1): warning C4715: 'findMemoryTypeIndex': not all control paths return a value
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  VulkanApp_Data6.vcxproj -> D:\MRK\Visual Studio\Projects\VulkanApp02_DataInjection\x64\Debug\VulkanApp_Data6.exe
