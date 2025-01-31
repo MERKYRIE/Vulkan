@@ -17,6 +17,10 @@ using std::array;
 
 #include "VulkanUtilities.h"
 #include "VulkanMesh.h"
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+#include "VulkanMeshModel.h"
 
 struct ViewProjection
 {
@@ -45,6 +49,7 @@ public:
  stbi_uc* loadTextureFile(
   const string& filename, int* width, int* height,
   vk::DeviceSize* imageSize);
+ int createMeshModel(const string& filename);
 
 private:
 	GLFWwindow* window;
@@ -91,7 +96,7 @@ private:
 	vk::DeviceSize minUniformBufferOffet;
 	size_t modelUniformAlignement;
 	Model* modelTransferSpace;
-	const int MAX_OBJECTS = 2;
+	const int MAX_OBJECTS = 20;
 	vector<vk::Buffer> modelUniformBufferDynamic;
 	vector<vk::DeviceMemory> modelUniformBufferMemoryDynamic;
 
@@ -106,6 +111,8 @@ private:
  vk::Sampler textureSampler;
  vk::DescriptorPool samplerDescriptorPool;
  vk::DescriptorSetLayout samplerDescriptorSetLayout;
+ vector<vk::DescriptorSet> samplerDescriptorSets;
+ vector<VulkanMeshModel> meshModels;
 
 	// Instance
 	void createInstance();
@@ -170,5 +177,6 @@ private:
  int createTextureImage(const string& filename);
  int createTexture(const string& filename);
  void createTextureSampler();
+ int createTextureDescriptor(vk::ImageView textureImageView);
 };
 

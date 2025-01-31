@@ -2,7 +2,7 @@
 
 VulkanMesh::VulkanMesh(vk::PhysicalDevice physicalDeviceP,vk::Device deviceP, 
 	vk::Queue transferQueue, vk::CommandPool transferCommandPool, 
-	vector<Vertex>* vertices, vector<uint32_t>* indices)
+	vector<Vertex>* vertices, vector<uint32_t>* indices, int texIdP)
 	:
 	vertexCount(vertices->size()), indexCount(indices->size()), 
 	physicalDevice(physicalDeviceP), device(deviceP)

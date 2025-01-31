@@ -1,8 +1,1 @@
-﻿  Main.cpp
-  VulkanMesh.cpp
-D:\MRK\Visual Studio\Projects\VulkanApp02_DataInjection\VulkanApp_Data1\VulkanMesh.cpp(5,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  VulkanRenderer.cpp
-  Generating Code...
-D:\MRK\Visual Studio\Projects\VulkanApp02_DataInjection\VulkanApp_Data1\VulkanMesh.cpp(99,1): warning C4715: 'VulkanMesh::findMemoryTypeIndex': not all control paths return a value
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-  VulkanApp_Data1.vcxproj -> D:\MRK\Visual Studio\Projects\VulkanApp02_DataInjection\x64\Debug\VulkanApp_Data1.exe
+﻿  VulkanApp_Data1.vcxproj -> D:\Programs\_Studio\Projects\Vulkan\VulkanApp02_DataInjection\x64\Debug\VulkanApp_Data1.exe

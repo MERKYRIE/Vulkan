@@ -16,7 +16,7 @@ class VulkanMesh
 public:
 	VulkanMesh(vk::PhysicalDevice physicalDeviceP, vk::Device deviceP,
 		vk::Queue transferQueue, vk::CommandPool transferCommandPool, 
-		vector<Vertex>* vertices, vector<uint32_t>* indices);
+		vector<Vertex>* vertices, vector<uint32_t>* indices, int texIdP);
 	VulkanMesh() = default;
 	~VulkanMesh() = default;
 
@@ -27,9 +27,10 @@ public:
 
 	Model getModel() const { return model; }
 	void setModel(const glm::mat4& modelP) { model.model = modelP; }
-
+ 
 
 	void destroyBuffers();
+ int getTexId() const { return texId; }
 
 private:
 	size_t vertexCount{0};
@@ -43,6 +44,7 @@ private:
 	vk::DeviceMemory vertexBufferMemory;
 	vk::Buffer indexBuffer;
 	vk::DeviceMemory indexBufferMemory;
+ int texId;
 
 	void createVertexBuffer(vk::Queue transferQueue, vk::CommandPool transferCommandPool, vector<Vertex>* vertices);
 	void createIndexBuffer(vk::Queue transferQueue, vk::CommandPool transferCommandPool, vector<uint32_t>* indices);

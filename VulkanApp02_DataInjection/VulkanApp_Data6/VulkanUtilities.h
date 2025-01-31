@@ -11,8 +11,9 @@ using std::string;
 
 struct Vertex
 {
-	glm::vec3 pos;
-	glm::vec3 col;
+ glm::vec3 pos;
+ glm::vec3 col;
+ glm::vec2 tex;
 };
 
 const vector<const char*> deviceExtensions
@@ -138,54 +139,6 @@ static void createBuffer(vk::PhysicalDevice physicalDevice, vk::Device device,
 
 	// Allocate memory to given vertex buffer
 	device.bindBufferMemory(*buffer, *bufferMemory, 0);
-}
-
-static void copyBuffer(vk::Device device, vk::Queue transferQueue, vk::CommandPool transferCommandPool,
-	vk::Buffer srcBuffer, vk::Buffer dstBuffer, vk::DeviceSize bufferSize)
-{
-	// Command buffer to hold transfer commands
-	vk::CommandBuffer transferCommandBuffer;
-
-	// Command buffer details
-	vk::CommandBufferAllocateInfo allocInfo{};
-	allocInfo.level = vk::CommandBufferLevel::ePrimary;
-	allocInfo.commandPool = transferCommandPool;
-	allocInfo.commandBufferCount = 1;
-
-	// Allocate command buffer from pool
-	transferCommandBuffer = device.allocateCommandBuffers(allocInfo).front();
-
-	// Information to begin command buffer record
-	vk::CommandBufferBeginInfo beginInfo{};
-	// Only using command buffer once, then become unvalid
-	beginInfo.flags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit;
-
-	// Begin records transfer commands
-	transferCommandBuffer.begin(beginInfo);
-
-	// Region of data to copy from and to
-	vk::BufferCopy bufferCopyRegion{};
-	bufferCopyRegion.srcOffset = 0;		// From the start of first buffer...
-	bufferCopyRegion.dstOffset = 0;		// ...copy to the start of second buffer
-	bufferCopyRegion.size = bufferSize;
-
-	// Copy src buffer to dst buffer
-	transferCommandBuffer.copyBuffer(srcBuffer, dstBuffer, bufferCopyRegion);
-
-	// End record commands
-	transferCommandBuffer.end();
-
-	// Queue submission info
-	vk::SubmitInfo submitInfo{};
-	submitInfo.commandBufferCount = 1;
-	submitInfo.pCommandBuffers = &transferCommandBuffer;
-
-	// Submit transfer commands to transfer queue and wait until it finishes
-	transferQueue.submit(submitInfo);
-	transferQueue.waitIdle();
-
-	// Free temporary command buffer
-	device.freeCommandBuffers(transferCommandPool, transferCommandBuffer);
 }
 
 static vk::CommandBuffer beginCommandBuffer(vk::Device device, vk::CommandPool commandPool)
